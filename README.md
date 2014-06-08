@@ -67,3 +67,49 @@ var bubble = new BubbleSort([-1,0,-11,42,32,3]);
 console.log(bubble.sort()); // [-11,-1,0,3,32,42]
 ```
 
+#Insertion Sort
+
+PesudoCode:
+
+```
+function insertionSort(array A)
+    for i from 1 to length[A]-1 do
+        value := A[i] 
+        j := i-1
+        while j >= 0 and A[j] > value do
+            A[j+1] := A[j]
+            j := j-1
+        done
+        A[j+1] = value
+    done
+```
+
+![](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)
+
+
+```javascript
+class InsertionSort extends Sorter {
+  constructor(nums){
+    super(nums)
+  }
+  
+  sort() {
+    for(var i = 1; i < this.nums.length; i++){
+      var value = this.nums[i];
+      var j = i - 1;
+      while(j >= 0 && this.nums[j] > value){
+        this.nums[j + 1] = this.nums[j];
+        j = j - 1;
+      }
+      this.nums[j + 1] = value;
+    }
+    return this.nums;
+  }
+}
+```
+
+```
+var insertion = new InsertionSort([3,4,1,2,0]);
+
+console.log(insertion.sort()); // 0,1,2,3,4
+```
