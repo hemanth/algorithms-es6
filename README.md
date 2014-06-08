@@ -34,6 +34,8 @@ repeat
 until hasChanged = false
 ```
 
+![](https://upload.wikimedia.org/wikipedia/commons/c/c8/Bubble-sort-example-300px.gif)
+
 Worst case complexity is `O(n^2)`
 
 ```js
