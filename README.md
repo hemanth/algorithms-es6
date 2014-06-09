@@ -113,3 +113,49 @@ var insertion = new InsertionSort([3,4,1,2,0]);
 
 console.log(insertion.sort()); // 0,1,2,3,4
 ```
+
+#Selection Sort
+
+PesudoCode:
+
+```
+for i = 0 to numItems - 1
+    for  j = i+1 to numItems               
+        if A[i] > A[j]
+            A[i] <-> A[j]         
+        End If    
+    Next j
+Next i
+```
+
+![](http://upload.wikimedia.org/wikipedia/commons/9/94/Selection-Sort-Animation.gif)
+
+```js
+class SelectionSort extends Sorter {
+  constructor(nums){
+    super(nums);
+  }
+  sort(){
+    var len = this.nums.length,
+        min,i,j;
+
+    for (i=0; i < len; i++){
+        min = i;
+        for (j=i+1; j < len; j++){
+            if (this.nums[j] < this.nums[min]){
+                min = j;
+            }
+        }
+        if (i != min){
+            [this.nums[i],this.nums[min]] = [this.nums[min],this.nums[i]];
+        }
+    }
+    return this.nums;
+  }
+}
+```
+
+```js
+var selection = SelectionSort([1,2,-1,0,4,5]);
+console.log(selection.sort()); // -1,0,1,2,4,5
+```
