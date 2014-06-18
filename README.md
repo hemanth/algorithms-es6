@@ -4,7 +4,7 @@ As of now in the latest browser or node, typing `class` would yield:
 > class
 SyntaxError: Unexpected reserved word
 ```
-This repo is a WIP that should slowly grow into a collection of implementation of various algorithms with JS using ES6 constructs!
+This repo is a WIP that should slowly grow into a collection of implementation of letious algorithms with JS using ES6 constructs!
 
 
 Let's start with Sorting Algorithms!
@@ -46,10 +46,10 @@ class BubbleSort extends Sorter {
   }
   
   sort() {
-    var length = this.nums.length;
+    let length = this.nums.length;
      do {
-        var swapped = false;
-        for(var i = 0; i < length; ++i) {
+        let swapped = false;
+        for(let i = 0; i < length; ++i) {
           if (this.nums[i] > this.nums[i+1]) {
             [this.nums[i],this.nums[i+1]] = [this.nums[i+1], this.nums[i]];
             swapped = true;
@@ -62,7 +62,7 @@ class BubbleSort extends Sorter {
 ```
 
 ```
-var bubble = new BubbleSort([-1,0,-11,42,32,3]);
+let bubble = new BubbleSort([-1,0,-11,42,32,3]);
 
 console.log(bubble.sort()); // [-11,-1,0,3,32,42]
 ```
@@ -94,9 +94,9 @@ class InsertionSort extends Sorter {
   }
   
   sort() {
-    for(var i = 1; i < this.nums.length; i++){
-      var value = this.nums[i];
-      var j = i - 1;
+    for(let i = 1; i < this.nums.length; i++){
+      let value = this.nums[i];
+      let j = i - 1;
       while(j >= 0 && this.nums[j] > value){
         this.nums[j + 1] = this.nums[j];
         j = j - 1;
@@ -109,7 +109,7 @@ class InsertionSort extends Sorter {
 ```
 
 ```
-var insertion = new InsertionSort([3,4,1,2,0]);
+let insertion = new InsertionSort([3,4,1,2,0]);
 
 console.log(insertion.sort()); // 0,1,2,3,4
 ```
@@ -136,7 +136,7 @@ class SelectionSort extends Sorter {
     super(nums);
   }
   sort(){
-    var len = this.nums.length,
+    let len = this.nums.length,
         min,i,j;
 
     for (i=0; i < len; i++){
@@ -156,6 +156,35 @@ class SelectionSort extends Sorter {
 ```
 
 ```js
-var selection = SelectionSort([1,2,-1,0,4,5]);
+let selection = SelectionSort([1,2,-1,0,4,5]);
 console.log(selection.sort()); // -1,0,1,2,4,5
+```
+
+#Count Sort
+
+```js
+class CountSort extends Sorter {
+  constructor(nums) {
+    super(nums);
+  }
+  
+  sort() {
+    let i, x = 0, count = [];
+ 
+    for (i = this.min; i <= this.max; i++) {
+        count[i] = 0;
+    }
+ 
+    for (i=0; i < this.nums.length; i++) {
+        count[this.nums[i]]++;
+    }
+ 
+    for (i = this.min; i <= this.max; i++) {
+        while (count[i]-- > 0) {
+            this.nums[x++] = i;
+        }
+    }
+    return this.nums;
+  }
+}
 ```
